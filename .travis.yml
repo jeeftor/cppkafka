@@ -12,7 +12,7 @@ rdkafka:
 env:
   # - RDKAFKA_VERSION=0.9.4
   - RDKAFKA_VERSION=1.5.0 # Latest RDKafka
-  
+
 os:
   - linux
   - windows
@@ -24,7 +24,7 @@ jobs:
         - KAFKA_VERISON=2.11-2.1.1
         - KAFKA_URL=https://www.apache.org/dist/kafka/2.1.1/kafka_2.11-2.1.1.tgz
         - wget $KAFKA_URL
-        - tar xvzf $KAFKA_VERISON.tgz 
+        - tar xvzf $KAFKA_VERISON.tgz
         - ./kafka_$KAFKA_VERSION/bin/kafka-server-start.sh ./kafka_$KAFKA_VERSION/config/server.properties > /dev/null 2> /dev/null &
         -  while ! echo "asd" | nc localhost 9092; do sleep 1; done
         - ./kafka_$KAFKA_VERSION/bin/kafka-topics.sh --create --zookeeper localhost:2181 --topic cppkafka_test1 --partitions 3 --replication-factor 1
