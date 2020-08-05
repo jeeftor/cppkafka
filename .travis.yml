@@ -1,33 +1,36 @@
 language: cpp
 sudo: required
 
+
+
 job:
   include:
     - compiler: cpp
       os: linux
       env:
-        - RDKAFKA_VERSION=v0.9.4
+        - RDKAFKA_VERSION=0.9.4
         - KAFKA_VERSION=2.11-2.2.0
       script:
         - echo "HI"
     - compiler: clang
       os: linux
       env:
-        - RDKAFKA_VERSION=v0.9.4
+        - RDKAFKA_VERSION=0.9.4
         - KAFKA_VERSION=2.11-2.2.0
       script:
         - echo "HI"
     - compiler: cpp
       os: linux
       env:
-        - RDKAFKA_VERSION==v0.11.5
+        - RDKAFKA_VERSION=1.5.0
         - KAFKA_VERSION=2.11-2.2.0
       script:
+        - cd /tmp && VERSION="1.5.0" && wget https://github.com/edenhill/librdkafka/archive/v${VERSION}.tar.gz && tar -xzf v${VERSION}.tar.gz && rm v${VERSION}.tar.gz && cd librdkafka-${VERSION}/ \ && echo "# enabled for compatability with afsim " >> CMakeLists.txt  && echo "add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)" >> CMakeLists.txt  && cmake .  && make  && make install
         - echo "HI"
     - compiler: clang
       os: linux
       env:
-        - RDKAFKA_VERSION==v0.11.5
+        - RDKAFKA_VERSION=1.5.0
         - KAFKA_VERSION=2.11-2.2.0
       script:
         - echo "HI"
