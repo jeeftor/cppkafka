@@ -147,15 +147,15 @@ before_script:
 #   - linux
   # - windows
 
-# script:
-#   - |-
-#     case $TRAVIS_OS_NAME in
-#       windows)
-#       dir
-#       # cmake -DCPPKAFKA_DISABLE_TESTS=ON -DCPPKAFKA_DISABLE_EXAMPLES=ON .
-#       # make
-#     ;;
-#     esac
+n_script:
+  - |-
+    case $TRAVIS_OS_NAME in
+      windows)
+      dir
+      # cmake -DCPPKAFKA_DISABLE_TESTS=ON -DCPPKAFKA_DISABLE_EXAMPLES=ON .
+      # make
+    ;;
+    esac
 
 
 addons:
