@@ -1,5 +1,4 @@
 language: cpp
-
 sudo: required
 
 compiler:
@@ -12,6 +11,7 @@ env:
 
 os:
   - linux
+  - windows
 
 addons:
   apt:
@@ -20,9 +20,12 @@ addons:
     - libboost-program-options-dev
     - zookeeper
     - zookeeperd
+    - wget
 
 before_script:
   - KAFKA_VERSION=2.11-2.2.0
+  - sudo apt install -y wget || sudo apt-get install -y wget
+  - echo "Cloning: http://apache.cs.utah.edu/kafka/2.2.0/kafka_$KAFKA_VERSION.tgz"
   - wget http://apache.cs.utah.edu/kafka/2.2.0/kafka_$KAFKA_VERSION.tgz
   - tar xvzf kafka_$KAFKA_VERSION.tgz
   - ./kafka_$KAFKA_VERSION/bin/kafka-server-start.sh ./kafka_$KAFKA_VERSION/config/server.properties > /dev/null 2> /dev/null &
