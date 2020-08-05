@@ -33,8 +33,8 @@ os:
 
 before_script:
   - wget -q http://packages.confluent.io/archive/5.5/confluent-community-5.5.1-2.12.zip
+  - dir
   - unzip confluent-community-5.5.1-2.12.zip
-  - cd confluent/bin
   - dir
 
 
