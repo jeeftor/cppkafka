@@ -17,13 +17,12 @@ os:
   - linux
   - windows
 
+
+
 jobs:
   include:
     - os: linux
       name: Kafkaookie
-      compiler:
-        - gcc
-        - clang
       before_script:
         - KAFKA_VERISON=kafka_2.12-2.5.0
         - KAFKA_URL=https://www.apache.org/dyn/closer.cgi?path=/kafka/2.5.0/kafka_2.12-2.5.0.tgz
@@ -36,6 +35,14 @@ jobs:
 
         - 
 
+before_script:
+  - |-
+    case $TRAVIS_OS_NAME in 
+      windows)
+        windows
+      linux )
+        linux
+    esac
 
 
 # matrix:
