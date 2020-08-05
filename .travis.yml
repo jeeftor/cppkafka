@@ -35,7 +35,7 @@ script:
     case $TRAVIS_OS_NAME in
       windows)
       dir
-      # cmake -DCPPKAFKA_DISABLE_TESTS=ON -DCPPKAFKA_DISABLE_EXAMPLES=ON . \
+      # cmake -DCPPKAFKA_DISABLE_TESTS=ON -DCPPKAFKA_DISABLE_EXAMPLES=ON .
       # make
     ;;
     esac
@@ -45,21 +45,21 @@ before_script:
   - |-
     case $TRAVIS_OS_NAME in
       windows)
-        wget http://packages.confluent.io/archive/5.5/confluent-community-5.5.1-2.12.zip
-        dir
+        wget http://packages.confluent.io/archive/5.5/confluent-community-5.5.1-2.12.zip confluent.zip
+        dir *.zip
         
         unzip confluent-5.5.1-2.12.zip
         
-        git clone https://github.com/Microsoft/vcpkg.git
-        cd vcpkg
-        dir
-        ./bootstrap-vcpkg.bat
-        ./vcpkg integrate install
+        # git clone https://github.com/Microsoft/vcpkg.git
+        # cd vcpkg
+        # dir
+        # ./bootstrap-vcpkg.bat
+        # ./vcpkg integrate install
 
-        # Install librdkafka
-        ./vcpkg install librdkafka pthread --triplet x64-windows
-        cd ..
-        ;;
+        # # Install librdkafka
+        # ./vcpkg install librdkafka pthread --triplet x64-windows
+        # cd ..
+        # ;;
       linux )
         echo "Running Linux"
         VERSION="1.5.0" && wget https://github.com/edenhill/librdkafka/archive/v${VERSION}.tar.gz \
