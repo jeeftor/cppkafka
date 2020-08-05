@@ -19,14 +19,14 @@ job:
         - KAFKA_VERSION=2.11-2.2.0
       script:
         - echo "HI"
-    - compiler: cpp
+    - name: LibrdMake
+      compiler: cpp
       os: linux
       env:
         - RDKAFKA_VERSION=1.5.0
         - KAFKA_VERSION=2.11-2.2.0
       script:
-        - cd /tmp && VERSION="1.5.0" && wget https://github.com/edenhill/librdkafka/archive/v${VERSION}.tar.gz && tar -xzf v${VERSION}.tar.gz && rm v${VERSION}.tar.gz && cd librdkafka-${VERSION}/ \ && echo "# enabled for compatability with afsim " >> CMakeLists.txt  && echo "add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)" >> CMakeLists.txt  && cmake .  && make  && make install
-        - echo "HI"
+        - cd /tmp && VERSION="1.5.0" && wget https://github.com/edenhill/librdkafka/archive/v${VERSION}.tar.gz && tar -xzf v${VERSION}.tar.gz && rm v${VERSION}.tar.gz && cd librdkafka-${VERSION}/ \ && echo "# enabled for compatability with afsim " >> CMakeLists.txt  && echo "add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)" >> CMakeLists.txt  && cmake .  && make  && sudo make install
     - compiler: clang
       os: linux
       env:
