@@ -35,10 +35,11 @@ before_script:
   - wget -q http://packages.confluent.io/archive/5.5/confluent-community-5.5.1-2.12.zip
   - dir
   - unzip confluent-community-5.5.1-2.12.zip
-  - dir confluent-5.5.1	
-  - cd confluent-5.5.1	
-  - cd bin
-  - dir
+  - dir ./confluent-5.5.1/config
+
+  # - cd confluent-5.5.1	
+  # - cd bin
+  # - ./kafka-server-star    
 
 
 # poobefore_script:
