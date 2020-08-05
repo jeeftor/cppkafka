@@ -34,6 +34,7 @@ os:
 before_script:
   - wget -q http://packages.confluent.io/archive/5.5/confluent-community-5.5.1-2.12.zip
   - unzip confluent-community-5.5.1-2.12.zip
+  - cd confluent/bin
   - dir
 
 
@@ -41,7 +42,7 @@ before_script:
 #   - |-
 #     case $TRAVIS_OS_NAME in
 #       windows)
-#         wget http://packages.confluent.io/archive/5.5/confluent-community-5.5.1-2.12.zip -o confluent.zip
+#         wget -q http://packages.confluent.io/archive/5.5/confluent-community-5.5.1-2.12.zip
 #         dir *.zip
 #         unzip confluent-5.5.1-2.12.zip
 
