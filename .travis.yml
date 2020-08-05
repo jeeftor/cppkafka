@@ -30,25 +30,13 @@ os:
 #         - ./kafka_$KAFKA_VERSION/bin/kafka-topics.sh --create --zookeeper localhost:2181 --topic cppkafka_test1 --partitions 3 --replication-factor 1
 #         - ./kafka_$KAFKA_VERSION/bin/kafka-topics.sh --create --zookeeper localhost:2181 --topic cppkafka_test2 --partitions 3 --replication-factor 1
 
-script:
-  - |-
-    case $TRAVIS_OS_NAME in
-      windows)
-      dir
-      # cmake -DCPPKAFKA_DISABLE_TESTS=ON -DCPPKAFKA_DISABLE_EXAMPLES=ON .
-      # make
-    ;;
-    esac
 
 
 before_script:
   - |-
     case $TRAVIS_OS_NAME in
       windows)
-        powershell (New-Object System.Net.WebClient).DownloadFile("http://packages.confluent.io/archive/5.5/confluent-community-5.5.1-2.12.zip") > confluent.zip
-        unzip c.zip
-
-        wget http://packages.confluent.io/archive/5.5/confluent-community-5.5.1-2.12.zip confluent.zip
+        wget http://packages.confluent.io/archive/5.5/confluent-community-5.5.1-2.12.zip -o confluent.zip
         dir *.zip
         
         unzip confluent-5.5.1-2.12.zip
@@ -155,6 +143,17 @@ before_script:
 # os:
 #   - linux
   # - windows
+
+script:
+  - |-
+    case $TRAVIS_OS_NAME in
+      windows)
+      dir
+      # cmake -DCPPKAFKA_DISABLE_TESTS=ON -DCPPKAFKA_DISABLE_EXAMPLES=ON .
+      # make
+    ;;
+    esac
+
 
 addons:
   apt:
