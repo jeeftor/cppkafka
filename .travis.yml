@@ -42,8 +42,8 @@ before_script:
   - |-
     case $TRAVIS_OS_NAME in
       windows)
-        # choco install kafka
-        echo running windows
+        choco install kafka
+        
         
         git clone https://github.com/Microsoft/vcpkg.git
         cd vcpkg
@@ -53,6 +53,7 @@ before_script:
 
         # Install librdkafka
         ./vcpkg install librdkafka pthread --triplet x64-windows
+        cd ..
         ;;
       linux )
         echo "Running Linux"
