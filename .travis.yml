@@ -13,21 +13,12 @@ env:
   - RDKAFKA_VERSION=0.9.4
   - RDKAFKA_VERSION=1.5.0
   
-# os:
-#   - linux
-#   - windows
+os:
+  - linux
+  - windows
 
 # kafka:
 #   - 2.11-2.2.0
-
-jobs:
-  include:
-    - os: windows
-      scirpt:
-        - set
-    - os: linux
-      script:
-        - ehco "hi"
 
 # before_install:
 # - |-
