@@ -34,12 +34,7 @@ os:
 before_script:
   - wget -q http://packages.confluent.io/archive/5.5/confluent-community-5.5.1-2.12.zip
   - unzip confluent-community-5.5.1-2.12.zip
-  - KAFKA_VERISON=confluent-5.5.1
-  
-  - dir confluent-5.5.1\config
-  - cd
-
-  # - ./confluent-5.5.1/bin/kafka-server-star    
+  - ./confluent-5.5.1/bin/windows/kafka-server-start.bat
 
 
 # poobefore_script:
