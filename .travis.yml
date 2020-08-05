@@ -42,8 +42,8 @@ before_script:
         choco install kafka
         echo running windows
         
-        git clone https://github.com/Microsoft/vcpkg.git c:\vcpkg
-        cd c:\vcpkg
+        git clone https://github.com/Microsoft/vcpkg.git
+        cd vcpkg
         bootstrap-vcpkg.bat
         vcpkg integrate install
 
@@ -61,7 +61,7 @@ before_script:
     && echo "add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)" >> CMakeLists.txt \
     && cmake . \
     && make \
-    && make install
+    && sudo make install
         ;;
     esac
 
