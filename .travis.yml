@@ -39,11 +39,12 @@ before_script:
   - |-
     case $TRAVIS_OS_NAME in
       windows)
-        choco install kafka
+        #choco install kafka
         echo running windows
         
         git clone https://github.com/Microsoft/vcpkg.git
         cd vcpkg
+        dir
         bootstrap-vcpkg.bat
         vcpkg integrate install
 
