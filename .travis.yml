@@ -4,17 +4,14 @@ sudo: required
 
 compiler:
   - gcc
-  - clang
-
-rdkafka:
-  - 1.5.0
+  # - clang
 
 env:
   # - RDKAFKA_VERSION=0.9.4
   - RDKAFKA_VERSION=1.5.0 # Latest RDKafka
 
 os:
-  - linux
+  # - linux
   - windows
 
 
@@ -46,13 +43,10 @@ before_script:
         cd vcpkg
         dir
         ./bootstrap-vcpkg.bat
-        
-        bootstrap-vcpkg.bat
-        
-        vcpkg integrate install
+        ./vcpkg integrate install
 
         # Install librdkafka
-        vcpkg install librdkafka pthread --triplet x64-windows
+        ./vcpkg install librdkafka pthread --triplet x64-windows
 
         ;;
       linux )
