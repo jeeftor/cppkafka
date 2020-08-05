@@ -30,7 +30,6 @@ os:
 #         - ./kafka_$KAFKA_VERSION/bin/kafka-topics.sh --create --zookeeper localhost:2181 --topic cppkafka_test1 --partitions 3 --replication-factor 1
 #         - ./kafka_$KAFKA_VERSION/bin/kafka-topics.sh --create --zookeeper localhost:2181 --topic cppkafka_test2 --partitions 3 --replication-factor 1
 
-#         - 
 script:
   - |-
     case $TRAVIS_OS_NAME in
@@ -39,12 +38,14 @@ script:
       make
     ;;
     esac
+
+
 before_script:
   - |-
     case $TRAVIS_OS_NAME in
       windows)
-        choco install kafka
-        
+        curl -O http://packages.confluent.io/archive/5.5/confluent-community-5.5.1-2.12.zip
+        unzip confluent-5.5.1-2.12.zip
         
         git clone https://github.com/Microsoft/vcpkg.git
         cd vcpkg
