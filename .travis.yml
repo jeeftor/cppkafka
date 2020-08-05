@@ -45,17 +45,19 @@ before_script:
     case $TRAVIS_OS_NAME in
       windows)
         curl -O http://packages.confluent.io/archive/5.5/confluent-community-5.5.1-2.12.zip
-        unzip confluent-5.5.1-2.12.zip
-        
-        git clone https://github.com/Microsoft/vcpkg.git
-        cd vcpkg
         dir
-        ./bootstrap-vcpkg.bat
-        ./vcpkg integrate install
 
-        # Install librdkafka
-        ./vcpkg install librdkafka pthread --triplet x64-windows
-        cd ..
+        # unzip confluent-5.5.1-2.12.zip
+        
+        # git clone https://github.com/Microsoft/vcpkg.git
+        # cd vcpkg
+        # dir
+        # ./bootstrap-vcpkg.bat
+        # ./vcpkg integrate install
+
+        # # Install librdkafka
+        # ./vcpkg install librdkafka pthread --triplet x64-windows
+        # cd ..
         ;;
       linux )
         echo "Running Linux"
