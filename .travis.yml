@@ -49,18 +49,17 @@ before_script:
 
         # Install librdkafka
         vcpkg install librdkafka pthread --triplet x64-windows
-        
+
         ;;
       linux )
         echo "Running Linux"
-        wget https://github.com/mfontanini/cppkafka/archive/v0.3.1.tar.gz \
-    && tar -xzf v0.3.1.tar.gz \
-    && rm v0.3.1.tar.gz \
-    && cd cppkafka-0.3.1/ \
-    && mkdir build \
+        VERSION="1.5.0" && wget https://github.com/edenhill/librdkafka/archive/v${VERSION}.tar.gz \
+    && tar -xzf v${VERSION}.tar.gz \
+    && rm v${VERSION}.tar.gz \
+    && cd librdkafka-${VERSION}/ \
     && echo "# enabled for compatability with afsim " >> CMakeLists.txt \
     && echo "add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)" >> CMakeLists.txt \
-    && cmake -DCPPKAFKA_DISABLE_TESTS=ON -DCPPKAFKA_DISABLE_EXAMPLES=ON . \
+    && cmake . \
     && make \
     && make install
         ;;
