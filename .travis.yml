@@ -37,10 +37,19 @@ os:
 
 before_script:
   - |-
-    case $TRAVIS_OS_NAME in 
+    case $TRAVIS_OS_NAME in
       windows)
-        choco
+        choco 
         echo running windows
+        
+        git clone https://github.com/Microsoft/vcpkg.git c:\vcpkg
+        cd c:\vcpkg
+        bootstrap-vcpkg.bat
+        vcpkg integrate install
+
+        # Install librdkafka
+        vcpkg install librdkafka pthread --triplet x64-windows
+        
         ;;
       linux )
         echo "Running Linux"
