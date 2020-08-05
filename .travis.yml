@@ -1,46 +1,74 @@
 language: cpp
 sudo: required
 
-compiler:
-  - gcc
-  - clang
+job:
+  include:
+    - compiler: cpp
+      os: linux
+      env:
+        - RDKAFKA_VERSION=v0.9.4
+      script:
+        - echo "HI"
+    - compiler: clang
+      os: linux
+      env:
+        - RDKAFKA_VERSION=v0.9.4
+      script:
+        - echo "HI"
+    - compiler: cpp
+      os: linux
+      env:
+        - RDKAFKA_VERSION==v0.11.5
+      script:
+        - echo "HI"
+    - compiler: clang
+      os: linux
+      env:
+        - RDKAFKA_VERSION==v0.11.5
+      script:
+        - echo "HI"
+  
+#   - RDKAFKA_VERSION=v0.11.5
+# compiler:
+#   - gcc
+#   - clang
 
-env:
-  - RDKAFKA_VERSION=v0.9.4
-  - RDKAFKA_VERSION=v0.11.5
+# env:
+#   - RDKAFKA_VERSION=v0.9.4
+#   - RDKAFKA_VERSION=v0.11.5
 
-os:
-  - linux
-  - windows
+# os:
+#   - linux
+  # - windows
 
-addons:
-  apt:
-    packages:
-    - libboost-dev
-    - libboost-program-options-dev
-    - zookeeper
-    - zookeeperd
-    - wget
+# addons:
+#   apt:
+#     packages:
+#     - libboost-dev
+#     - libboost-program-options-dev
+#     - zookeeper
+#     - zookeeperd
+#     - wget
 
-before_script:
-  - KAFKA_VERSION=2.11-2.2.0
-  - sudo apt install -y wget || sudo apt-get install -y wget
-  - echo "Cloning: http://apache.cs.utah.edu/kafka/2.2.0/kafka_$KAFKA_VERSION.tgz"
-  - wget http://apache.cs.utah.edu/kafka/2.2.0/kafka_$KAFKA_VERSION.tgz
-  - tar xvzf kafka_$KAFKA_VERSION.tgz
-  - ./kafka_$KAFKA_VERSION/bin/kafka-server-start.sh ./kafka_$KAFKA_VERSION/config/server.properties > /dev/null 2> /dev/null &
-  - git clone https://github.com/edenhill/librdkafka.git
-  - while ! echo "asd" | nc localhost 9092; do sleep 1; done
-  - ./kafka_$KAFKA_VERSION/bin/kafka-topics.sh --create --zookeeper localhost:2181 --topic cppkafka_test1 --partitions 3 --replication-factor 1
-  - ./kafka_$KAFKA_VERSION/bin/kafka-topics.sh --create --zookeeper localhost:2181 --topic cppkafka_test2 --partitions 3 --replication-factor 1
+# before_script:
+#   - KAFKA_VERSION=2.11-2.2.0
+#   - sudo apt install -y wget || sudo apt-get install -y wget
+#   - echo "Cloning: http://apache.cs.utah.edu/kafka/2.2.0/kafka_$KAFKA_VERSION.tgz"
+#   - wget http://apache.cs.utah.edu/kafka/2.2.0/kafka_$KAFKA_VERSION.tgz
+#   - tar xvzf kafka_$KAFKA_VERSION.tgz
+#   - ./kafka_$KAFKA_VERSION/bin/kafka-server-start.sh ./kafka_$KAFKA_VERSION/config/server.properties > /dev/null 2> /dev/null &
+#   - git clone https://github.com/edenhill/librdkafka.git
+#   - while ! echo "asd" | nc localhost 9092; do sleep 1; done
+#   - ./kafka_$KAFKA_VERSION/bin/kafka-topics.sh --create --zookeeper localhost:2181 --topic cppkafka_test1 --partitions 3 --replication-factor 1
+#   - ./kafka_$KAFKA_VERSION/bin/kafka-topics.sh --create --zookeeper localhost:2181 --topic cppkafka_test2 --partitions 3 --replication-factor 1
 
-script:
-  - cd librdkafka
-  - git checkout $RDKAFKA_VERSION
-  - ./configure --prefix=./install && make libs && make install
-  - cd ..
-  - mkdir build && cd build
-  - cmake .. -DCPPKAFKA_CMAKE_VERBOSE=ON -DRDKAFKA_ROOT=./librdkafka/install -DKAFKA_TEST_INSTANCE=localhost:9092
-  - make examples
-  - make tests
-  - ./tests/cppkafka_tests
+# script:
+#   - cd librdkafka
+#   - git checkout $RDKAFKA_VERSION
+#   - ./configure --prefix=./install && make libs && make install
+#   - cd ..
+#   - mkdir build && cd build
+#   - cmake .. -DCPPKAFKA_CMAKE_VERBOSE=ON -DRDKAFKA_ROOT=./librdkafka/install -DKAFKA_TEST_INSTANCE=localhost:9092
+#   - make examples
+#   - make tests
+#   - ./tests/cppkafka_tests
