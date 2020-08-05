@@ -17,14 +17,17 @@ os:
   - linux
   - windows
 
-matrix:
+jobs:
   include:
-    - os: linux
-      script:
-        - env
-    - os: windows
-      script:
-        - set
+    script: cmake .
+# matrix:
+#   include:
+#     - os: linux
+#       script:
+#         - env
+#     - os: windows
+#       script:
+#         - set
 
 # kafka:
 #   - 2.11-2.2.0
