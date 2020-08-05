@@ -22,12 +22,10 @@ env:
 
 jobs:
   include:
-    - stage: build
-      os: windows
+    - os: windows
       scirpt:
         - set
-    - stage: build
-      os: linux
+    - os: linux
       script:
         - ehco "hi"
 
