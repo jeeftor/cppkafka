@@ -31,7 +31,13 @@ os:
 #         - ./kafka_$KAFKA_VERSION/bin/kafka-topics.sh --create --zookeeper localhost:2181 --topic cppkafka_test2 --partitions 3 --replication-factor 1
 
 #         - 
-
+script:
+  - |-
+    case $TRAVIS_OS_NAME in
+      windows)
+      dir
+    ;;
+    esac
 before_script:
   - |-
     case $TRAVIS_OS_NAME in
@@ -47,7 +53,6 @@ before_script:
 
         # Install librdkafka
         ./vcpkg install librdkafka pthread --triplet x64-windows
-
         ;;
       linux )
         echo "Running Linux"
