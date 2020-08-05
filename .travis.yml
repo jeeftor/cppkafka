@@ -17,6 +17,15 @@ os:
   - linux
   - windows
 
+matrix:
+  include:
+    - os: linux
+      script:
+        - env
+    - os: windows
+      script:
+        - set
+
 # kafka:
 #   - 2.11-2.2.0
 
