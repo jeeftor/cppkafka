@@ -19,30 +19,30 @@ os:
 
 
 
-jobs:
-  include:
-    - os: linux
-      name: Kafkaookie
-      before_script:
-        - KAFKA_VERISON=kafka_2.12-2.5.0
-        - KAFKA_URL=https://www.apache.org/dyn/closer.cgi?path=/kafka/2.5.0/kafka_2.12-2.5.0.tgz
-        - wget $KAFKA_URL
-        - tar xvzf $KAFKA_VERISON.tgz
-        - ./kafka_$KAFKA_VERSION/bin/kafka-server-start.sh ./kafka_$KAFKA_VERSION/config/server.properties > /dev/null 2> /dev/null &
-        -  while ! echo "asd" | nc localhost 9092; do sleep 1; done
-        - ./kafka_$KAFKA_VERSION/bin/kafka-topics.sh --create --zookeeper localhost:2181 --topic cppkafka_test1 --partitions 3 --replication-factor 1
-        - ./kafka_$KAFKA_VERSION/bin/kafka-topics.sh --create --zookeeper localhost:2181 --topic cppkafka_test2 --partitions 3 --replication-factor 1
+# jobs:
+#   include:
+#     - os: linux
+#       name: Kafkaookie
+#       before_script:
+#         - KAFKA_VERISON=kafka_2.12-2.5.0
+#         - KAFKA_URL=https://www.apache.org/dyn/closer.cgi?path=/kafka/2.5.0/kafka_2.12-2.5.0.tgz
+#         - wget $KAFKA_URL
+#         - tar xvzf $KAFKA_VERISON.tgz
+#         - ./kafka_$KAFKA_VERSION/bin/kafka-server-start.sh ./kafka_$KAFKA_VERSION/config/server.properties > /dev/null 2> /dev/null &
+#         -  while ! echo "asd" | nc localhost 9092; do sleep 1; done
+#         - ./kafka_$KAFKA_VERSION/bin/kafka-topics.sh --create --zookeeper localhost:2181 --topic cppkafka_test1 --partitions 3 --replication-factor 1
+#         - ./kafka_$KAFKA_VERSION/bin/kafka-topics.sh --create --zookeeper localhost:2181 --topic cppkafka_test2 --partitions 3 --replication-factor 1
 
-        - 
+#         - 
 
 before_script:
   - |-
     case $TRAVIS_OS_NAME in 
       windows)
-        windows
+        choco
         ;;
       linux )
-        linux
+        echo "Running Linux
         ;;
     esac
 
