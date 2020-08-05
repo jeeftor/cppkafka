@@ -19,7 +19,10 @@ os:
 
 jobs:
   include:
-    script: cmake .
+    - os: linux
+      before_script:
+        -  KAFKA_VERSION=2.11-2.2.0
+        - wget http://apache.cs.utah.edu/kafka/2.2.0/kafka_$KAFKA_VERSION.tgz
 # matrix:
 #   include:
 #     - os: linux
