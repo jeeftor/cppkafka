@@ -25,7 +25,7 @@ jobs:
     - stage: build
       os: windows
       scirpt:
-        - echo "hi"
+        - set
     - stage: build
       os: linux
       script:
