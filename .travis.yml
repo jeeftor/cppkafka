@@ -32,7 +32,7 @@ os:
 
 
 before_script:
-  - wget http://packages.confluent.io/archive/5.5/confluent-community-5.5.1-2.12.zip
+  - wget -q http://packages.confluent.io/archive/5.5/confluent-community-5.5.1-2.12.zip
   - unzip confluent-community-5.5.1-2.12.zip
 
 
