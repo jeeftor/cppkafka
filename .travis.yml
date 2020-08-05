@@ -7,26 +7,30 @@ job:
       os: linux
       env:
         - RDKAFKA_VERSION=v0.9.4
-      # script:
-      #   - echo "HI"
+        - KAFKA_VERSION=2.11-2.2.0
+      script:
+        - echo "HI"
     - compiler: clang
       os: linux
       env:
         - RDKAFKA_VERSION=v0.9.4
-      # script:
-      #   - echo "HI"
+        - KAFKA_VERSION=2.11-2.2.0
+      script:
+        - echo "HI"
     - compiler: cpp
       os: linux
       env:
         - RDKAFKA_VERSION==v0.11.5
-      # script:
-      #   - echo "HI"
+        - KAFKA_VERSION=2.11-2.2.0
+      script:
+        - echo "HI"
     - compiler: clang
       os: linux
       env:
         - RDKAFKA_VERSION==v0.11.5
-      # script:
-      #   - echo "HI"
+        - KAFKA_VERSION=2.11-2.2.0
+      script:
+        - echo "HI"
   
 #   - RDKAFKA_VERSION=v0.11.5
 # compiler:
