@@ -33,6 +33,7 @@ os:
 
 before_script:
   - choco install javaruntime
+  - java -version
   # - wget -q http://packages.confluent.io/archive/5.5/confluent-community-5.5.1-2.12.zip
   # - unzip confluent-community-5.5.1-2.12.zip
   # - ./confluent-5.5.1/bin/windows/kafka-server-start.bat ./confluent-5.5.1/etc/kafka/server.properties
