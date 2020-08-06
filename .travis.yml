@@ -4,7 +4,7 @@ sudo: required
 
 compiler:
   - gcc
-  - clang
+  # - clang
 
 env:
   # - RDKAFKA_VERSION=0.9.4
@@ -12,7 +12,7 @@ env:
 
 os:
   - linux
-  - windows
+  # - windows
 
 
 

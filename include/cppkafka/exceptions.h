@@ -46,7 +46,7 @@
 namespace cppkafka {
 
 
-    /**
+/**
  * Base class for all cppkafka exceptions
  */
     DLL_EXPORT class CPPKAFKA_API Exception : public std::exception
