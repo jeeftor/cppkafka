@@ -45,10 +45,8 @@ before_script:
     case $TRAVIS_OS_NAME in
       windows)
         echo $HOME
-        echo $HOME
-        echo $HOME
-        echo $HOME
-        echo $HOME
+        set
+        
         # wget -q http://packages.confluent.io/archive/5.5/confluent-community-5.5.1-2.12.zip
         # dir *.zip
         # unzip confluent-5.5.1-2.12.zip
@@ -129,6 +127,7 @@ script:
       windows)
         dir
         pwd
+        set
         
         
         cmake -DBOOST_ROOT=packages -DCMAKE_FIND_DEBUG_MODE=false -DCPPKAFKA_DISABLE_TESTS=ON -DCPPKAFKA_DISABLE_EXAMPLES=ON -S . -B build -G "Visual Studio 15 2017" -DCMAKE_TOOLCHAIN_FILE=C:/Users/travis/build/jeeftor/cppkafka/vcpkg/scripts/buildsystems/vcpkg.cmake
