@@ -125,8 +125,8 @@ script:
 
         cmake -DCMAKE_GENERATOR_PLATFORM=x64 -DBOOST_ROOT=packages \
           -DCMAKE_FIND_DEBUG_MODE=OFF \
-          -DCPPKAFKA_DISABLE_TESTS=ON \
-          -DCPPKAFKA_DISABLE_EXAMPLES=ON \
+          -DCPPKAFKA_DISABLE_TESTS=OFF \
+          -DCPPKAFKA_DISABLE_EXAMPLES=OFF \
           -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake \
           -S . -B build \
           -DBoost_INCLUDE_DIR=C:/packages/boost.1.72.0.0/lib/native/include \
