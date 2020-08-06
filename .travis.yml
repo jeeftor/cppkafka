@@ -82,7 +82,7 @@ before_script:
                         && echo "add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)" >> CMakeLists.txt \
                         && cmake . \
                         && make \
-                        && sudo make install
+                        && sudo make install && cd ..
 
         KAFKA_VERISON=kafka_2.13-2.5.0
         KAFKA_URL=http://apache.mirrors.hoobly.com/kafka/2.5.0/kafka_2.13-2.5.0.tgz
