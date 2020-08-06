@@ -42,7 +42,8 @@ before_script:
   # - unzip confluent-community-5.5.1-2.12.zip
   # - ./confluent-5.5.1/bin/windows/kafka-server-start.bat ./confluent-5.5.1/etc/kafka/server.properties
 
-
+script:
+  - java
 # poobefore_script:
 #   - |-
 #     case $TRAVIS_OS_NAME in
