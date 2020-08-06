@@ -33,7 +33,7 @@ os:
 
 before_script:
   # - choco install -y server-jre --debug --verbose
-  - choco install -y adoptopenjdk12jre --verbose --install-directory=c:\jre
+  - choco install -y adoptopenjdk12jre --verbose --install-directory=c:/jre
 
   # - java -version
   - wget -q http://apache.mirrors.hoobly.com/zookeeper/zookeeper-3.6.1/apache-zookeeper-3.6.1-bin.tar.gz
@@ -43,8 +43,8 @@ before_script:
   # - unzip confluent-community-5.5.1-2.12.zip
   # - ./confluent-5.5.1/bin/windows/kafka-server-start.bat ./confluent-5.5.1/etc/kafka/server.properties
 
-script:
-  - c:\jre\bin\java -version
+# script:
+#   - c:\jre\bin\java -version
 # poobefore_script:
 #   - |-
 #     case $TRAVIS_OS_NAME in
