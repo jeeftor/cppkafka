@@ -128,6 +128,14 @@ script:
     ;;
     esac
 
+    case $TRAVIS_OS_NAME in
+      linux)
+        cmake .
+        make
+      ;;
+      esac
+    
+
 
 addons:
   apt:
