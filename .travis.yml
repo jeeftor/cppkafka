@@ -35,8 +35,12 @@ before_script:
   - export JAVA_HOME=${JAVA_HOME:-/c/jdk}
   - export PATH=${JAVA_HOME}/bin:${PATH}
   - choco install jdk8 -params 'installdir=c:\\jdk' -y
-  - refreshenv
-  - java -version
+  - - /c/jdk/bin/java -version
+  - wget -q http://apache.mirrors.hoobly.com/zookeeper/zookeeper-3.6.1/apache-zookeeper-3.6.1-bin.tar.gz
+  - wget -q http://apache.mirrors.hoobly.com/kafka/2.5.0/kafka_2.13-2.5.0.tgz
+  - 7z *.tgz
+  
+  
   # - choco install -y server-jre --debug --verbose
   # - choco install -y adoptopenjdk12jre --verbose
   # - dir "C:\Program Files\AdoptOpenJDK\jdk-12.0.2+10-jre\bin\java"
