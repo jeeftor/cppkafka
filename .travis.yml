@@ -33,17 +33,18 @@ os:
 
 before_script:
   # - choco install -y server-jre --debug --verbose
-  - choco install -y adoptopenjdk12jre --verbose
-  - dir "C:\Program Files\AdoptOpenJDK\jdk-12.0.2+10-jre\bin"
+  - choco install -y adoptopenjdk12jre --verbose --install-directory=c:\jre
+
   # - java -version
   - wget -q http://apache.mirrors.hoobly.com/zookeeper/zookeeper-3.6.1/apache-zookeeper-3.6.1-bin.tar.gz
   - wget -q http://apache.mirrors.hoobly.com/kafka/2.5.0/kafka_2.13-2.5.0.tgz
+  - c:\jre\bin\java -version
   # # - wget -q http://packages.confluent.io/archive/5.5/confluent-community-5.5.1-2.12.zip
   # - unzip confluent-community-5.5.1-2.12.zip
   # - ./confluent-5.5.1/bin/windows/kafka-server-start.bat ./confluent-5.5.1/etc/kafka/server.properties
 
 script:
-  - java
+  - c:\jre\bin\java -version
 # poobefore_script:
 #   - |-
 #     case $TRAVIS_OS_NAME in
