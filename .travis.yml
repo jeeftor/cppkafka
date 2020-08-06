@@ -73,18 +73,6 @@ before_script:
     esac
 
 
-# matrix:
-#   include:
-#     - os: linux
-#       script:
-#         - env
-#     - os: windows
-#       script:
-#         - set
-
-# kafka:
-#   - 2.11-2.2.0
-
 # before_install:
 # - |-
 #     case $TRAVIS_OS_NAME in
@@ -106,13 +94,12 @@ before_script:
 #     esac
 
 
-n_script:
+script:
   - |-
     case $TRAVIS_OS_NAME in
       windows)
-      dir
-      # cmake -DCPPKAFKA_DISABLE_TESTS=ON -DCPPKAFKA_DISABLE_EXAMPLES=ON .
-      # make
+        cmake -DCPPKAFKA_DISABLE_TESTS=ON -DCPPKAFKA_DISABLE_EXAMPLES=ON .
+        make
     ;;
     esac
 
