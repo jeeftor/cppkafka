@@ -31,61 +31,46 @@ os:
 #         - ./kafka_$KAFKA_VERSION/bin/kafka-topics.sh --create --zookeeper localhost:2181 --topic cppkafka_test2 --partitions 3 --replication-factor 1
 
 
+# before_script:
+#   - export JAVA_HOME=${JAVA_HOME:-/c/jdk}
+#   - export PATH=${JAVA_HOME}/bin:${PATH}
+#   - choco install jdk8 -params 'installdir=c:\\jdk' -y
+#   - wget -q http://apache.mirrors.hoobly.com/zookeeper/zookeeper-3.6.1/apache-zookeeper-3.6.1-bin.tar.gz
+#   - wget -q http://apache.mirrors.hoobly.com/kafka/2.5.0/kafka_2.13-2.5.0.tgz
+#   - tar xvzf kafka_2.13-2.5.0.tgz
+#   - tar xvzf apache-zookeeper-3.6.1-bin.tar.gz
+
 before_script:
-  # - export JAVA_HOME=${JAVA_HOME:-/c/jdk}
-  # - export PATH=${JAVA_HOME}/bin:${PATH}
-  # - choco install jdk8 -params 'installdir=c:\\jdk' -y
-  # - - /c/jdk/bin/java -version
-  - wget -q http://apache.mirrors.hoobly.com/zookeeper/zookeeper-3.6.1/apache-zookeeper-3.6.1-bin.tar.gz
-  - wget -q http://apache.mirrors.hoobly.com/kafka/2.5.0/kafka_2.13-2.5.0.tgz
-  - tar xvzf kafka_2.13-2.5.0.tgz
-  - tar xvzf apache-zookeeper-3.6.1-bin.tar.gz
-  
-  
-  # - choco install -y server-jre --debug --verbose
-  # - choco install -y adoptopenjdk12jre --verbose
-  # - dir "C:\Program Files\AdoptOpenJDK\jdk-12.0.2+10-jre\bin\java"
-  
-  # - java -version
-  # - wget -q http://apache.mirrors.hoobly.com/zookeeper/zookeeper-3.6.1/apache-zookeeper-3.6.1-bin.tar.gz
-  # - wget -q http://apache.mirrors.hoobly.com/kafka/2.5.0/kafka_2.13-2.5.0.tgz
-  # # - wget -q http://packages.confluent.io/archive/5.5/confluent-community-5.5.1-2.12.zip
-  # - unzip confluent-community-5.5.1-2.12.zip
-  # - ./confluent-5.5.1/bin/windows/kafka-server-start.bat ./confluent-5.5.1/etc/kafka/server.properties
+  - |-
+    case $TRAVIS_OS_NAME in
+      windows)
+        wget -q http://packages.confluent.io/archive/5.5/confluent-community-5.5.1-2.12.zip
+        dir *.zip
+        unzip confluent-5.5.1-2.12.zip
 
-script:
-  - java
-# poobefore_script:
-#   - |-
-#     case $TRAVIS_OS_NAME in
-#       windows)
-#         wget -q http://packages.confluent.io/archive/5.5/confluent-community-5.5.1-2.12.zip
-#         dir *.zip
-#         unzip confluent-5.5.1-2.12.zip
+        git clone https://github.com/Microsoft/vcpkg.git
+        cd vcpkg
+        dir
+        ./bootstrap-vcpkg.bat
+        ./vcpkg integrate install
 
-#         # git clone https://github.com/Microsoft/vcpkg.git
-#         # cd vcpkg
-#         # dir
-#         # ./bootstrap-vcpkg.bat
-#         # ./vcpkg integrate install
-
-#         # # Install librdkafka
-#         # ./vcpkg install librdkafka pthread --triplet x64-windows
-#         # cd ..
-#         # ;;
-#       linux )
-#         echo "Running Linux"
-#         VERSION="1.5.0" && wget https://github.com/edenhill/librdkafka/archive/v${VERSION}.tar.gz \
-#     && tar -xzf v${VERSION}.tar.gz \
-#     && rm v${VERSION}.tar.gz \
-#     && cd librdkafka-${VERSION}/ \
-#     && echo "# enabled for compatability with afsim " >> CMakeLists.txt \
-#     && echo "add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)" >> CMakeLists.txt \
-#     && cmake . \
-#     && make \
-#     && sudo make install
-#         ;;
-#     esac
+        # Install librdkafka
+        ./vcpkg install librdkafka pthread --triplet x64-windows
+        cd ..
+        ;;
+      linux )
+        echo "Running Linux"
+        VERSION="1.5.0" && wget https://github.com/edenhill/librdkafka/archive/v${VERSION}.tar.gz \
+    && tar -xzf v${VERSION}.tar.gz \
+    && rm v${VERSION}.tar.gz \
+    && cd librdkafka-${VERSION}/ \
+    && echo "# enabled for compatability with afsim " >> CMakeLists.txt \
+    && echo "add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)" >> CMakeLists.txt \
+    && cmake . \
+    && make \
+    && sudo make install
+        ;;
+    esac
 
 
 # matrix:
