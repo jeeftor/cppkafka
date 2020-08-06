@@ -44,9 +44,9 @@ before_script:
   - |-
     case $TRAVIS_OS_NAME in
       windows)
-        wget -q http://packages.confluent.io/archive/5.5/confluent-community-5.5.1-2.12.zip
-        dir *.zip
-        unzip confluent-5.5.1-2.12.zip
+        # wget -q http://packages.confluent.io/archive/5.5/confluent-community-5.5.1-2.12.zip
+        # dir *.zip
+        # unzip confluent-5.5.1-2.12.zip
 
         export JAVA_HOME=${JAVA_HOME:-/c/jdk}
         export PATH=${JAVA_HOME}/bin:${PATH}
