@@ -69,6 +69,9 @@ before_script:
         # Install Boost
         curl -sq -k -o c:/nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
         c:/nuget.exe install boost  -Version 1.72.0 -OutputDirectory c:/packages
+        c:/nuget.exe install boost_program_options  -Version 1.72.0 -OutputDirectory c:/packages
+
+        
 
 
         ;;

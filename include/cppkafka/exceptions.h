@@ -36,19 +36,20 @@
 #include "macros.h"
 #include "error.h"
 
+#ifdef WIN32
+#define DLL_EXPORT __declspec(dllexport)
+#define DLL_IMPORT __declspec(dllimport)
+#else
+#define DLL_EXPORT
+#define DLL_IMPORT
+#endif
 namespace cppkafka {
 
-#ifdef(WIN32)
-#define DLL_EX __declspec(dllexport)
-#define DLL_IN __declspec(dllimport)
-#else
-#define DLL_EX
-#define DLL_IN
-#endif
+
     /**
  * Base class for all cppkafka exceptions
  */
-    DLL_EX class CPPKAFKA_API Exception : public std::exception
+    DLL_EXPORT class CPPKAFKA_API Exception : public std::exception
     {
     public:
         Exception(std::string message);

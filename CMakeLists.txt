@@ -25,6 +25,7 @@ if(MSVC)
     add_definitions("-D_SCL_SECURE_NO_WARNINGS=1")
     add_definitions("-DNOGDI=1")
     add_definitions("-DNOMINMAX=1")
+    add_definitions("/EHsc")
 endif()
 if (NOT CMAKE_CXX_FLAGS)
     # Set default compile flags for the project
