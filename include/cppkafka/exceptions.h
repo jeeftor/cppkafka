@@ -36,20 +36,13 @@
 #include "macros.h"
 #include "error.h"
 
-#ifdef WIN32
-#define DLL_EXPORT __declspec(dllexport)
-#define DLL_IMPORT __declspec(dllimport)
-#else
-#define DLL_EXPORT
-#define DLL_IMPORT
-#endif
-namespace cppkafka {
+namespace cppkafka
+{
 
-
-/**
+    /**
  * Base class for all cppkafka exceptions
  */
-    DLL_EXPORT class CPPKAFKA_API Exception : public std::exception
+    class CPPKAFKA_API Exception : public std::exception
     {
     public:
         Exception(std::string message);
@@ -165,6 +158,6 @@ namespace cppkafka {
         ActionTerminatedException(const std::string &error);
     };
 
-} // cppkafka
+} // namespace cppkafka
 
 #endif // CPPKAFKA_EXCEPTIONS_H

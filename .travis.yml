@@ -11,8 +11,8 @@ env:
   - RDKAFKA_VERSION=1.5.0 # Latest RDKafka
 
 os:
-  - linux
-  # - windows
+  # - linux
+  - windows
 
 
 
