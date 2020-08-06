@@ -50,11 +50,11 @@ before_script:
 
         export JAVA_HOME=${JAVA_HOME:-/c/jdk}
         export PATH=${JAVA_HOME}/bin:${PATH}
-        choco install jdk8 -params 'installdir=c:\\jdk' -y
-        wget -q http://apache.mirrors.hoobly.com/zookeeper/zookeeper-3.6.1/apache-zookeeper-3.6.1-bin.tar.gz
-        wget -q http://apache.mirrors.hoobly.com/kafka/2.5.0/kafka_2.13-2.5.0.tgz
-        tar xvzf kafka_2.13-2.5.0.tgz
-        tar xvzf apache-zookeeper-3.6.1-bin.tar.gz --exclude='docs/'
+        # choco install jdk8 -params 'installdir=c:\\jdk' -y
+        # wget -q http://apache.mirrors.hoobly.com/zookeeper/zookeeper-3.6.1/apache-zookeeper-3.6.1-bin.tar.gz
+        # wget -q http://apache.mirrors.hoobly.com/kafka/2.5.0/kafka_2.13-2.5.0.tgz
+        # tar xvzf kafka_2.13-2.5.0.tgz
+        # tar xvzf apache-zookeeper-3.6.1-bin.tar.gz --exclude='docs/'
 
 
         git clone https://github.com/Microsoft/vcpkg.git
@@ -84,8 +84,8 @@ before_script:
                         && make \
                         && sudo make install
 
-        KAFKA_VERISON=kafka_2.12-2.5.0
-        KAFKA_URL=https://www.apache.org/dyn/closer.cgi?path=/kafka/2.5.0/kafka_2.12-2.5.0.tgz
+        KAFKA_VERISON=kafka_2.13-2.5.0
+        KAFKA_URL=http://apache.mirrors.hoobly.com/kafka/2.5.0/kafka_2.13-2.5.0.tgz
         wget $KAFKA_URL
         tar xvzf $KAFKA_VERISON.tgz
         ./kafka_$KAFKA_VERSION/bin/kafka-server-start.sh ./kafka_$KAFKA_VERSION/config/server.properties > /dev/null 2> /dev/null &
