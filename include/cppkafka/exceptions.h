@@ -38,109 +38,131 @@
 
 namespace cppkafka {
 
-/**
+#ifdef(WIN32)
+#define DLL_EX __declspec(dllexport)
+#define DLL_IN __declspec(dllimport)
+#else
+#define DLL_EX
+#define DLL_IN
+#endif
+    /**
  * Base class for all cppkafka exceptions
  */
-class CPPKAFKA_API Exception : public std::exception {
-public:
-    Exception(std::string message);
+    DLL_EX class CPPKAFKA_API Exception : public std::exception
+    {
+    public:
+        Exception(std::string message);
 
-    const char* what() const noexcept;
-private:
-    std::string message_;
-};
+        const char *what() const noexcept;
 
-/**
+    private:
+        std::string message_;
+    };
+
+    /**
  * A configuration related error
  */
-class CPPKAFKA_API ConfigException : public Exception {
-public:
-    ConfigException(const std::string& config_name, const std::string& error);
-};
+    class CPPKAFKA_API ConfigException : public Exception
+    {
+    public:
+        ConfigException(const std::string &config_name, const std::string &error);
+    };
 
-/** 
+    /** 
  * Indicates a configuration option was not set
  */
-class CPPKAFKA_API ConfigOptionNotFound : public Exception {
-public:
-    ConfigOptionNotFound(const std::string& config_name);
-};
+    class CPPKAFKA_API ConfigOptionNotFound : public Exception
+    {
+    public:
+        ConfigOptionNotFound(const std::string &config_name);
+    };
 
-/** 
+    /** 
  * Indicates a configuration option value could not be converted to a specified type
  */
-class CPPKAFKA_API InvalidConfigOptionType : public Exception {
-public:
-    InvalidConfigOptionType(const std::string& config_name, const std::string& type);
-};
+    class CPPKAFKA_API InvalidConfigOptionType : public Exception
+    {
+    public:
+        InvalidConfigOptionType(const std::string &config_name, const std::string &type);
+    };
 
-/** 
+    /** 
  * Indicates something that was being looked up failed to be found
  */
-class CPPKAFKA_API ElementNotFound : public Exception {
-public:
-    ElementNotFound(const std::string& element_type, const std::string& name);
-};
+    class CPPKAFKA_API ElementNotFound : public Exception
+    {
+    public:
+        ElementNotFound(const std::string &element_type, const std::string &name);
+    };
 
-/** 
+    /** 
  * Indicates something that was incorrectly parsed
  */
-class CPPKAFKA_API ParseException : public Exception {
-public:
-    ParseException(const std::string& message);
-};
+    class CPPKAFKA_API ParseException : public Exception
+    {
+    public:
+        ParseException(const std::string &message);
+    };
 
-/** 
+    /** 
  * Indicates something had an unexpected versiom
  */
-class CPPKAFKA_API UnexpectedVersion : public Exception {
-public:
-    UnexpectedVersion(uint32_t version);
-};
+    class CPPKAFKA_API UnexpectedVersion : public Exception
+    {
+    public:
+        UnexpectedVersion(uint32_t version);
+    };
 
-/**
+    /**
  * A generic rdkafka handle error
  */
-class CPPKAFKA_API HandleException : public Exception {
-public:
-    HandleException(Error error);
+    class CPPKAFKA_API HandleException : public Exception
+    {
+    public:
+        HandleException(Error error);
 
-    Error get_error() const;
-private:
-    Error error_;
-};
+        Error get_error() const;
 
-/**
+    private:
+        Error error_;
+    };
+
+    /**
  * Consumer exception
  */
-class CPPKAFKA_API ConsumerException : public Exception {
-public:
-    ConsumerException(Error error);
+    class CPPKAFKA_API ConsumerException : public Exception
+    {
+    public:
+        ConsumerException(Error error);
 
-    Error get_error() const;
-private:
-    Error error_;
-};
+        Error get_error() const;
 
-/**
+    private:
+        Error error_;
+    };
+
+    /**
  * Queue exception for rd_kafka_queue_t errors
  */
-class CPPKAFKA_API QueueException : public Exception {
-public:
-    QueueException(Error error);
+    class CPPKAFKA_API QueueException : public Exception
+    {
+    public:
+        QueueException(Error error);
 
-    Error get_error() const;
-private:
-    Error error_;
-};
+        Error get_error() const;
 
-/**
+    private:
+        Error error_;
+    };
+
+    /**
  * Backoff performer has no more retries left for a specific action.
  */
-class CPPKAFKA_API ActionTerminatedException : public Exception {
-public:
-    ActionTerminatedException(const std::string& error);
-};
+    class CPPKAFKA_API ActionTerminatedException : public Exception
+    {
+    public:
+        ActionTerminatedException(const std::string &error);
+    };
 
 } // cppkafka
 
