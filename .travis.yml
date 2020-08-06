@@ -132,6 +132,7 @@ script:
           -DCPPKAFKA_DISABLE_EXAMPLES=ON \
           -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake \
           -S . -B build \
+          -DCPPKAFKA_BUILD_SHARED=0 \
           -DBoost_INCLUDE_DIR=C:/packages/boost.1.72.0.0/lib/native/include \
           -G "Visual Studio 15 2017"
           
