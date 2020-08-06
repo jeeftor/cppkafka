@@ -65,7 +65,6 @@ before_script:
 
         # Install librdkafka
         c:/vcpkg/vcpkg install librdkafka pthread --triplet x64-windows
-        
 
         # Install Boost
         curl -sq -k -o nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
@@ -124,7 +123,7 @@ script:
     case $TRAVIS_OS_NAME in
       windows)
 
-        cmake -DBOOST_ROOT=packages \
+        cmake -DCMAKE_GENERATOR_PLATFORM=x64 -DBOOST_ROOT=packages \
           -DCMAKE_FIND_DEBUG_MODE=OFF \
           -DCPPKAFKA_DISABLE_TESTS=OFF \
           -DCPPKAFKA_DISABLE_EXAMPLES=OFF \
@@ -133,7 +132,7 @@ script:
           -DBoost_INCLUDE_DIR=packages/boost.1.72.0.0/lib/native/include \
           -G "Visual Studio 15 2017"
           
-        cmake --build build
+        cmake --build build  --config Release
     ;;
     esac
 
