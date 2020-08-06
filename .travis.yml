@@ -139,7 +139,7 @@ script:
     case $TRAVIS_OS_NAME in
       linux)
         cmake .
-        VERBOSE=1 make
+        make
         sudo make install
       ;;
       esac
