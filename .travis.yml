@@ -113,7 +113,7 @@ script:
     case $TRAVIS_OS_NAME in
       windows)
         cmake -DCPPKAFKA_DISABLE_TESTS=ON -DCPPKAFKA_DISABLE_EXAMPLES=ON .
-        make
+        cmake --build
     ;;
     esac
 
