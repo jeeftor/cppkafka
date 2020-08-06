@@ -67,8 +67,8 @@ before_script:
         c:/vcpkg/vcpkg install librdkafka pthread --triplet x64-windows
 
         # Install Boost
-        curl -sq -k -o nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
-        ./nuget.exe install boost  -Version 1.72.0 -OutputDirectory packages
+        curl -sq -k -o ETet.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+        ./nuget.exe install boost  -Version 1.72.0 -OutputDirectory c:/packages
 
 
         ;;
@@ -129,7 +129,7 @@ script:
           -DCPPKAFKA_DISABLE_EXAMPLES=ON \
           -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake \
           -S . -B build \
-          -DBoost_INCLUDE_DIR=packages/boost.1.72.0.0/lib/native/include \
+          -DBoost_INCLUDE_DIR=C:/packages/boost.1.72.0.0/lib/native/include \
           -G "Visual Studio 15 2017"
           
         cmake --build build  --config Release
