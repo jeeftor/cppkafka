@@ -11,7 +11,7 @@ env:
   - RDKAFKA_VERSION=1.5.0 # Latest RDKafka
 
 os:
-  # - linux
+  - linux
   - windows
 
 
@@ -54,7 +54,7 @@ before_script:
         wget -q http://apache.mirrors.hoobly.com/zookeeper/zookeeper-3.6.1/apache-zookeeper-3.6.1-bin.tar.gz
         wget -q http://apache.mirrors.hoobly.com/kafka/2.5.0/kafka_2.13-2.5.0.tgz
         tar xvzf kafka_2.13-2.5.0.tgz
-        tar xvzf apache-zookeeper-3.6.1-bin.tar.gz --exclude=./docs
+        tar xvzf apache-zookeeper-3.6.1-bin.tar.gz --exclude='docs/'
 
 
         git clone https://github.com/Microsoft/vcpkg.git
@@ -75,14 +75,24 @@ before_script:
       linux )
         echo "Running Linux"
         VERSION="1.5.0" && wget https://github.com/edenhill/librdkafka/archive/v${VERSION}.tar.gz \
-    && tar -xzf v${VERSION}.tar.gz \
-    && rm v${VERSION}.tar.gz \
-    && cd librdkafka-${VERSION}/ \
-    && echo "# enabled for compatability with afsim " >> CMakeLists.txt \
-    && echo "add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)" >> CMakeLists.txt \
-    && cmake . \
-    && make \
-    && sudo make install
+                        && tar -xzf v${VERSION}.tar.gz \
+                        && rm v${VERSION}.tar.gz \
+                        && cd librdkafka-${VERSION}/ \
+                        && echo "# enabled for compatability with afsim " >> CMakeLists.txt \
+                        && echo "add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)" >> CMakeLists.txt \
+                        && cmake . \
+                        && make \
+                        && sudo make install
+
+        KAFKA_VERISON=kafka_2.12-2.5.0
+        KAFKA_URL=https://www.apache.org/dyn/closer.cgi?path=/kafka/2.5.0/kafka_2.12-2.5.0.tgz
+        wget $KAFKA_URL
+        tar xvzf $KAFKA_VERISON.tgz
+        ./kafka_$KAFKA_VERSION/bin/kafka-server-start.sh ./kafka_$KAFKA_VERSION/config/server.properties > /dev/null 2> /dev/null &
+        while ! echo "asd" | nc localhost 9092; do sleep 1; done
+        ./kafka_$KAFKA_VERSION/bin/kafka-topics.sh --create --zookeeper localhost:2181 --topic cppkafka_test1 --partitions 3 --replication-factor 1
+        ./kafka_$KAFKA_VERSION/bin/kafka-topics.sh --create --zookeeper localhost:2181 --topic cppkafka_test2 --partitions 3 --replication-factor 1
+
         ;;
     esac
 
@@ -112,8 +122,9 @@ script:
   - |-
     case $TRAVIS_OS_NAME in
       windows)
-        cmake -DCPPKAFKA_DISABLE_TESTS=ON -DCPPKAFKA_DISABLE_EXAMPLES=ON -S . -B build
-        cmake --build build
+        dir
+        cmake -DBOOST_ROOT=packages -DCMAKE_FIND_DEBUG_MODE=true -DCPPKAFKA_DISABLE_TESTS=ON -DCPPKAFKA_DISABLE_EXAMPLES=ON -S . -B build -G "Visual Studio 15 2017"
+        #cmake --build build
     ;;
     esac
 
