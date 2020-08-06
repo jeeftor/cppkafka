@@ -44,9 +44,7 @@ before_script:
   - |-
     case $TRAVIS_OS_NAME in
       windows)
-        echo $HOME
-        set
-        
+
         # wget -q http://packages.confluent.io/archive/5.5/confluent-community-5.5.1-2.12.zip
         # dir *.zip
         # unzip confluent-5.5.1-2.12.zip
@@ -60,14 +58,14 @@ before_script:
         # tar xvzf apache-zookeeper-3.6.1-bin.tar.gz --exclude='docs/'
 
 
-        git clone https://github.com/Microsoft/vcpkg.git
+        git clone https://github.com/Microsoft/vcpkg.git c:/vcpkg
         cd vcpkg
-        ./bootstrap-vcpkg.bat
-        ./vcpkg integrate install
+        c:/vcpkg/bootstrap-vcpkg.bat
+        c:/vcpkg/vcpkg integrate install
 
         # Install librdkafka
-        ./vcpkg install librdkafka pthread --triplet x64-windows
-        cd ..
+        c:/vcpkg/vcpkg install librdkafka pthread --triplet x64-windows
+        
 
         # Install Boost
         curl -sq -k -o nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
