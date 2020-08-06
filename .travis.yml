@@ -124,7 +124,8 @@ script:
       windows)
         dir
         cmake -DBOOST_ROOT=packages -DCMAKE_FIND_DEBUG_MODE=true -DCPPKAFKA_DISABLE_TESTS=ON -DCPPKAFKA_DISABLE_EXAMPLES=ON -S . -B build -G "Visual Studio 15 2017"
-        #cmake --build build
+        dir build
+        cmake --build build
     ;;
     esac
 
