@@ -58,9 +58,9 @@ before_script:
         # tar xvzf apache-zookeeper-3.6.1-bin.tar.gz --exclude='docs/'
 
 
+        # Download and build VCPKG
         git clone https://github.com/Microsoft/vcpkg.git c:/vcpkg
-        cd vcpkg
-        c:/vcpkg/bootstrap-vcpkg.bat
+        c:/vcpkg/bootstrap-vcpkg.bat -disableMetrics
         c:/vcpkg/vcpkg integrate install
 
         # Install librdkafka
@@ -128,10 +128,11 @@ script:
           -DCMAKE_FIND_DEBUG_MODE=false \
           -DCPPKAFKA_DISABLE_TESTS=ON \
           -DCPPKAFKA_DISABLE_EXAMPLES=ON \
+          -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake \
           -S . -B build \
           -DBoost_INCLUDE_DIR=packages/boost.1.72.0.0/lib/native/include \
-          -G "Visual Studio 15 2017" \
-          -DCMAKE_TOOLCHAIN_FILE=vcpkg/scripts/buildsystems/vcpkg.cmake
+          -G "Visual Studio 15 2017"
+          
         cmake --build build
     ;;
     esac
