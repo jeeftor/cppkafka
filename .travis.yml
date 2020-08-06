@@ -32,8 +32,8 @@ os:
 
 
 before_script:
-  # - choco install server-jre
-  - choco install adoptopenjdk12jre
+  - choco install -y server-jre
+  # - choco install adoptopenjdk12jre
   - java -version
   - wget -q http://apache.mirrors.hoobly.com/zookeeper/zookeeper-3.6.1/apache-zookeeper-3.6.1-bin.tar.gz
   - wget -q http://apache.mirrors.hoobly.com/kafka/2.5.0/kafka_2.13-2.5.0.tgz
