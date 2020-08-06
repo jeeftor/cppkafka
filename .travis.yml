@@ -35,6 +35,7 @@ before_script:
   - export JAVA_HOME=${JAVA_HOME:-/c/jdk}
   - export PATH=${JAVA_HOME}/bin:${PATH}
   - choco install jdk8 -params 'installdir=c:\\jdk' -y
+  - /c/jdk/bin/java
   # - choco install -y server-jre --debug --verbose
   # - choco install -y adoptopenjdk12jre --verbose
   # - dir "C:\Program Files\AdoptOpenJDK\jdk-12.0.2+10-jre\bin\java"
