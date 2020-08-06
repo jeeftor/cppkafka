@@ -126,7 +126,7 @@ script:
         pwd
         
         
-        cmake -DBOOST_ROOT=packages -DCMAKE_FIND_DEBUG_MODE=true -DCPPKAFKA_DISABLE_TESTS=ON -DCPPKAFKA_DISABLE_EXAMPLES=ON -S . -B build -G "Visual Studio 15 2017" -DCMAKE_TOOLCHAIN_FILE=C:/Users/travis/build/jeeftor/cppkafka/vcpkg/scripts/buildsystems/vcpkg.cmake"
+        cmake -DBOOST_ROOT=packages -DCMAKE_FIND_DEBUG_MODE=true -DCPPKAFKA_DISABLE_TESTS=ON -DCPPKAFKA_DISABLE_EXAMPLES=ON -S . -B build -G "Visual Studio 15 2017" -DCMAKE_TOOLCHAIN_FILE=C:/Users/travis/build/jeeftor/cppkafka/vcpkg/scripts/buildsystems/vcpkg.cmake
         cmake --build build
     ;;
     esac
