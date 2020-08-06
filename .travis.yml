@@ -125,9 +125,9 @@ script:
       windows)
 
         cmake -DBOOST_ROOT=packages \
-          -DCMAKE_FIND_DEBUG_MODE=false \
-          -DCPPKAFKA_DISABLE_TESTS=ON \
-          -DCPPKAFKA_DISABLE_EXAMPLES=ON \
+          -DCMAKE_FIND_DEBUG_MODE=ON \
+          -DCPPKAFKA_DISABLE_TESTS=OFF \
+          -DCPPKAFKA_DISABLE_EXAMPLES=OFF \
           -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake \
           -S . -B build \
           -DBoost_INCLUDE_DIR=packages/boost.1.72.0.0/lib/native/include \
@@ -179,3 +179,9 @@ addons:
 #   - make examples
 #   - make tests
 #   - ./tests/cppkafka_tests
+
+
+cache:
+    directories:
+    - $HOME/AppData/Local/Temp/chocolatey
+    - $HOME/AppData/Local/vcpkg
