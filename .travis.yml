@@ -4,14 +4,14 @@ sudo: required
 
 compiler:
   - gcc
-  # - clang
+  - clang
 
 env:
   # - RDKAFKA_VERSION=0.9.4
   - RDKAFKA_VERSION=1.5.0 # Latest RDKafka
 
 os:
-  # - linux
+  - linux
   - windows
 
 
@@ -60,7 +60,7 @@ before_script:
 
         # Download and build VCPKG
         git clone https://github.com/Microsoft/vcpkg.git c:/vcpkg
-        #c:/vcpkg/bootstrap-vcpkg.bat -disableMetrics
+        c:/vcpkg/bootstrap-vcpkg.bat -disableMetrics
         c:/vcpkg/vcpkg integrate install
 
         # Install librdkafka
