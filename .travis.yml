@@ -33,7 +33,7 @@ os:
 
 before_script:
   # - choco install -y server-jre --debug --verbose
-  - choco install -y adoptopenjdk12jre --verbose --install-directory=c:/jre
+  - choco install -y adoptopenjdk12jre --verbose --install-directory=/c/jre
 
   # - java -version
   - wget -q http://apache.mirrors.hoobly.com/zookeeper/zookeeper-3.6.1/apache-zookeeper-3.6.1-bin.tar.gz
