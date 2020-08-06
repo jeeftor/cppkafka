@@ -16,6 +16,16 @@ set(CPPKAFKA_VERSION "${CPPKAFKA_VERSION_MAJOR}.${CPPKAFKA_VERSION_MINOR}.${CPPK
 set(RDKAFKA_MIN_VERSION "0.9.4")
 set(RDKAFKA_MIN_VERSION_HEX 0x00090400)
 
+if(MSVC)
+    # Don't always use Wall, since VC's /Wall is ridiculously verbose.
+    set(CMAKE_CXX_FLAGS "/W3")
+
+    # Disable VC secure checks, since these are not really issues
+    add_definitions("-D_CRT_SECURE_NO_WARNINGS=1")
+    add_definitions("-D_SCL_SECURE_NO_WARNINGS=1")
+    add_definitions("-DNOGDI=1")
+    add_definitions("-DNOMINMAX=1")
+endif()
 if (NOT CMAKE_CXX_FLAGS)
     # Set default compile flags for the project
     if(MSVC)
