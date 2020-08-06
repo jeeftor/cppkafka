@@ -4,7 +4,7 @@ sudo: required
 
 compiler:
   - gcc
-  - clang
+  # - clang
 
 env:
   # - RDKAFKA_VERSION=0.9.4
@@ -131,9 +131,9 @@ script:
           -DCPPKAFKA_DISABLE_TESTS=ON \
           -DCPPKAFKA_DISABLE_EXAMPLES=ON \
           -S . -B build \
-          -DBoost_INCLUDE_DIR=$TRAVIS_BUILD_DIR/packages/boost.1.72.0.0/lib/native/include \
+          -DBoost_INCLUDE_DIR=packages/boost.1.72.0.0/lib/native/include \
           -G "Visual Studio 15 2017" \
-          -DCMAKE_TOOLCHAIN_FILE=$TRAVIS_BUILD_DIR/vcpkg/scripts/buildsystems/vcpkg.cmake
+          -DCMAKE_TOOLCHAIN_FILE=vcpkg/scripts/buildsystems/vcpkg.cmake
         cmake --build build
     ;;
     esac
