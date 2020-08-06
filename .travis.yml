@@ -125,7 +125,7 @@ script:
       windows)
 
         cmake -DBOOST_ROOT=packages \
-          -DCMAKE_FIND_DEBUG_MODE=ON \
+          -DCMAKE_FIND_DEBUG_MODE=OFF \
           -DCPPKAFKA_DISABLE_TESTS=OFF \
           -DCPPKAFKA_DISABLE_EXAMPLES=OFF \
           -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake \
@@ -185,3 +185,5 @@ cache:
     directories:
     - $HOME/AppData/Local/Temp/chocolatey
     - $HOME/AppData/Local/vcpkg
+    - C:/Users/travis/AppData/Local/vcpkg/archives
+    - c:/vcpkg
