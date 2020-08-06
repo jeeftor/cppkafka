@@ -123,9 +123,12 @@ script:
     case $TRAVIS_OS_NAME in
       windows)
         dir
-        cmake -DBOOST_ROOT=packages -DCMAKE_FIND_DEBUG_MODE=true -DCPPKAFKA_DISABLE_TESTS=ON -DCPPKAFKA_DISABLE_EXAMPLES=ON -S . -B build -G "Visual Studio 15 2017"
-        dir build
-        cmake --build build
+        pwd
+        #-DCMAKE_TOOLCHAIN_FILE=C:/Users/travis/build/jeeftor/cppkafka/vcpkg/scripts/buildsystems/vcpkg.cmake"
+        
+        # cmake -DBOOST_ROOT=packages -DCMAKE_FIND_DEBUG_MODE=true -DCPPKAFKA_DISABLE_TESTS=ON -DCPPKAFKA_DISABLE_EXAMPLES=ON -S . -B build -G "Visual Studio 15 2017"
+        # dir build
+        # cmake --build build
     ;;
     esac
 
@@ -133,6 +136,7 @@ script:
       linux)
         cmake .
         make
+        make install
       ;;
       esac
     
